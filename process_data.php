@@ -24,7 +24,6 @@ if(isset($_POST["name"])) {
     
         $statement->execute($data);
 
-        
     } catch (PDOException $ex) {
         var_dump($ex);
         die();
