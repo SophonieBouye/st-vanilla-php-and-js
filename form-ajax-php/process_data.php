@@ -31,7 +31,7 @@ if(isset($_POST["name"])) {
  
   
 
-    // echo '<div class="alert alert-success">Data Saved</div>';
+    echo '<div class="alert alert-success">Data Saved</div>';
 }
 
 ?>

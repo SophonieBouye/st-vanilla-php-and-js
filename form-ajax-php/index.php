@@ -76,36 +76,27 @@
 
         document.getElementById('submit').disabled = true;
 
-        /*
-           var ajax_request = new XMLHttpRequest();
-
-           ajax_request.open('POST', 'process_data.php');
-
-           ajax_request.send(form_data);
-
-           ajax_request.onreadystatechange = function() {
-               if(ajax_request.readyState == 4 && ajax_request.status == 200) {
-                   document.getElementById('submit').disabled = false;
-
-                   document.getElementById('sample_form').reset();
-               }
-           }
-*/
-
         fetch('process_data.php', {
-            method: 'POST',
-            body: form_data
-        }).then(function(response) {
-            if (response.status == 200) {
-                document.getElementById('submit').disabled = false;
-                document.getElementById('sample_form').reset();
-                document.getElementById('message').innerHTML =
-                    '<div class="alert alert-success">Data Saved</div>';
+                method: 'POST',
+                body: form_data
+            }).then(response => {
+                if (response.status == 200) {
+                    document.getElementById('submit').disabled = false;
+                    document.getElementById('sample_form').reset();
+
+                    return response.text();
+                }
+
+                response.text()
+            })
+            .then(data => {
+
+                document.getElementById('message').innerHTML = data;
                 setTimeout(function() {
                     document.getElementById('message').innerHTML = ''
                 }, 2000)
-            }
-        })
+
+            })
 
     }
     </script>
