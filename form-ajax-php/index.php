@@ -55,7 +55,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="button" name="submit" id="submit" class="btn btn-primary"
-                                onclick="save_data(); return false;">Submit</button>
+                                onclick="save_data();">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -66,13 +66,9 @@
 
     <script>
     function save_data() {
-        var form_element = document.getElementsByClassName('form-data');
+        var formSample = document.getElementById('sample_form');
 
-        var form_data = new FormData();
-
-        for (var count = 0; count < form_element.length; count++) {
-            form_data.append(form_element[count].name, form_element[count].value);
-        }
+        var form_data = new FormData(formSample);
 
         document.getElementById('submit').disabled = true;
 
@@ -87,17 +83,15 @@
                     return response.text();
                 }
 
-                response.text()
+                return response.statusText;
             })
             .then(data => {
-
                 document.getElementById('message').innerHTML = data;
                 setTimeout(function() {
                     document.getElementById('message').innerHTML = ''
                 }, 2000)
 
             })
-
     }
     </script>
 
